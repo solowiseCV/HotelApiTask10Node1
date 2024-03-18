@@ -19,13 +19,7 @@ app.use(bodyParser.json());
 
 
 // routes
-app.use("/api", rootRouter);
-app.use('*', (req, res) => {
-    res.status(404).send('Resource URL not found');
-  });
-
-
-
+app.use("/api/", rootRouter);
 
 //Error middleware
 app.use(errorHandler);
