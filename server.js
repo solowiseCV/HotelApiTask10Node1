@@ -21,8 +21,12 @@ app.use(bodyParser.json());
 // routes
 app.use("/api/", rootRouter);
 
+//Base Routes
 app.get("/", (req, res) => {
   res.send("Welcome Hotel api Base route, navigate to room(/api/v1/rooms) and roomtype routes(/api/v1/rooms-types) and enjoy.");
+});
+app.use('*', (req, res) => {
+  res.status(404).send('Resource URL not Found, use valid url e.g. https://hotelapitask10node1ucee.onrender.com/api/v1/rooms');
 });
 
 //Error middleware
