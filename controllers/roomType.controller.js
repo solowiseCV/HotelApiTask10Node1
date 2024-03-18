@@ -1,6 +1,6 @@
-
 import asyncHandler from 'express-async-handler';
 import { saveNewRoomType, fetchAllRoomTypes } from '../services/roomType.service.js';
+import { checkExistingRoom } from '../services/room.services.js';
 
 // Create RoomType
 export const createRoomType = asyncHandler(async (req, res) => {
@@ -15,6 +15,13 @@ export const createRoomType = asyncHandler(async (req, res) => {
     throw new Error("Name field must be atleaset 3 charaters")
   }
 
+  //checking if roomType exist with same name field
+  const existsRoomType = await checkExistingRoom({name})
+  if(existsRoomType){
+    throw new Error("Room Type already exist with same name")
+  }
+
+  
  //create roomType
   try {
     const newRoomType = await saveNewRoomType({ name });
