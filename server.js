@@ -21,6 +21,10 @@ app.use(bodyParser.json());
 // routes
 app.use("/api/", rootRouter);
 
+app.get("/", (req, res) => {
+  res.send("Welcome Hotel api Base route, navigate to room(/api/v1/rooms) and roomtype routes(/api/v1/rooms-types) and enjoy.");
+});
+
 //Error middleware
 app.use(errorHandler);
 
