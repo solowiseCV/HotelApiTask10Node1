@@ -4,7 +4,7 @@ import { createRoomType,getAllRoomsType }  from '../controllers/roomType.control
 const router = express.Router();
 
 
-router.post("/rooms-types",createRoomType);
+router.post("/room-type",createRoomType);
 router.get("/rooms-type",getAllRoomsType);
 
 export default router;

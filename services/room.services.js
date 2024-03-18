@@ -1,16 +1,16 @@
 
 import Room from '../models/rooms.model.js';
 
-export const checkExistingRoom = async ({name})=>{
 
+export const checkExistingRoom = async ({name})=>{
    const existingRoom = await Room.findOne({name});
    return existingRoom
 }
 
-export const saveNewRoom = async ({body }) => {
+export const saveNewRoom = async ({name,roomType,price }) => {
    
   //create room
-    const newRoom = await Room.create({ body });
+    const newRoom = await Room.create({ name,roomType,price });
     return newRoom;
   
 };

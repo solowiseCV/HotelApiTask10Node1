@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { saveNewRoomType, fetchAllRoomTypes } from '../services/roomType.service.js';
-import { checkExistingRoom } from '../services/room.services.js';
+import { saveNewRoomType, fetchAllRoomTypes, checkExistingRoomType } from '../services/roomType.service.js';
 
 // Create RoomType
 export const createRoomType = asyncHandler(async (req, res) => {
@@ -16,8 +15,9 @@ export const createRoomType = asyncHandler(async (req, res) => {
   }
 
   //checking if roomType exist with same name field
-  const existsRoomType = await checkExistingRoom({name})
+  const existsRoomType = await checkExistingRoomType({name})
   if(existsRoomType){
+    res.status(409);
     throw new Error("Room Type already exist with same name")
   }
 
